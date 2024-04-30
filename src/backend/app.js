@@ -25,5 +25,9 @@ app.use("/api/teams", teamsRouter);
 app.use("/api/members", membersRouter);
 app.use("/api/timeoff", timeoffRouter);
 
+// Handle every other route with index.html, which will serve the (compiled) React app.
+app.get('*', (request, response) => {
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
 
 module.exports = app;
